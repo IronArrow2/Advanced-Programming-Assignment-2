@@ -28,6 +28,24 @@ bool iequals(const string& a, const string& b)
 		});
 }
 
+string getInput(DynTempStack<string> commands, RoomManager* roomManager)
+{
+	string input;
+	getline(cin, input);
+	for (int i = 0; i < 24; i++)
+	{
+		if (iequals(input, commands.accessSpecificNode(i)))
+		{
+			return (commands.accessSpecificNode(i));
+		}
+		else if (i == 24)
+		{
+			cout << "Invalid command. Please try again.\n";
+			return "";
+		}
+	}
+	return "";
+}
 
 int main()
 {
@@ -82,27 +100,15 @@ int main()
 			roomManager->changeNarrationStack(&atriumNarration);
 			roomManager->processAtrium("");
 
-			//get input
-			string input;
-			getline(cin, input);
-			for (int i = 0; i < 24; i++)
-			{
-				if (iequals(input, commands.accessSpecificNode(i)))
-				{
-					roomManager->processAtrium(commands.accessSpecificNode(i));
-					break;
-				}
-				else if (i == 23)
-				{
-					cout << "Invalid command. Please try again.\n";
-				}
-			}
+			string temp = getInput(commands, roomManager);
+			roomManager->processAtrium(temp);
+
 			//process input and do stuff depending on what the player entered
-			if (iequals(input, "EXIT GAME") || iequals(input, "EXIT"))
+			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
 			{
 				switchManager.exitGame = true;
 			}
-			if (iequals(input, "LEAVE ROOM") || iequals(input, "EXIT ROOM"))
+			if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
 			{
 				switchManager.currentLocation = SwitchManager::GameLocations::keep;
 				cout << genericNarration.accessSpecificNode(8) << endl;
@@ -113,29 +119,17 @@ int main()
 			roomManager->changeNarrationStack(&keepNarration);
 			roomManager->processKeep("");
 
-			//get input
-			string input;
-			getline(cin, input);
-			for (int i = 0; i < 24; i++)
-			{
-				if (iequals(input, commands.accessSpecificNode(i)))
-				{
-					roomManager->processKeep(commands.accessSpecificNode(i));
-					break;
-				}
-				else if (i == 23)
-				{
-					cout << "Invalid command. Please try again.\n";
-				}
-			}
-			if (iequals(input, "EXIT GAME") || iequals(input, "EXIT"))
+			string temp = getInput(commands, roomManager);
+			roomManager->processKeep(temp);
+
+			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
 			{
 				switchManager.exitGame = true;
 			}
-			if (iequals(input, "LEAVE ROOM") || iequals(input, "EXIT ROOM"))
+			if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
 			{
 				cout << genericNarration.accessSpecificNode(1);
-				getline(cin, input);
+				string temp = getInput(commands, roomManager);
 			}
 		}
 		else if (switchManager.currentLocation == SwitchManager::GameLocations::southTower)
@@ -143,20 +137,17 @@ int main()
 			roomManager->changeNarrationStack(&southTowerNarration);
 			roomManager->processSouthTower("");
 
-			//get input
-			string input;
-			getline(cin, input);
-			for (int i = 0; i < 24; i++)
+			string temp = getInput(commands, roomManager);
+			roomManager->processSouthTower(temp);
+
+			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
 			{
-				if (iequals(input, commands.accessSpecificNode(i)))
-				{
-					roomManager->processSouthTower(commands.accessSpecificNode(i));
-					break;
-				}
-				else if (i == 23)
-				{
-					cout << "Invalid command. Please try again.\n";
-				}
+				switchManager.exitGame = true;
+			}
+			if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
+			{
+				cout << genericNarration.accessSpecificNode(1);
+				string temp = getInput(commands, roomManager);
 			}
 		}
 		else if (switchManager.currentLocation == SwitchManager::GameLocations::northTower)
@@ -164,20 +155,17 @@ int main()
 			roomManager->changeNarrationStack(&northTowerNarration);
 			roomManager->processNorthTower("");
 
-			//get input
-			string input;
-			getline(cin, input);
-			for (int i = 0; i < 24; i++)
+			string temp = getInput(commands, roomManager);
+			roomManager->processNorthTower(temp);
+
+			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
 			{
-				if (iequals(input, commands.accessSpecificNode(i)))
-				{
-					roomManager->processNorthTower(commands.accessSpecificNode(i));
-					break;
-				}
-				else if (i == 23)
-				{
-					cout << "Invalid command. Please try again.\n";
-				}
+				switchManager.exitGame = true;
+			}
+			if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
+			{
+				cout << genericNarration.accessSpecificNode(1);
+				string temp = getInput(commands, roomManager);
 			}
 		}
 		else if (switchManager.currentLocation == SwitchManager::GameLocations::cellar)
@@ -185,20 +173,17 @@ int main()
 			roomManager->changeNarrationStack(&cellarNarration);
 			roomManager->processCellar("");
 
-			//get input
-			string input;
-			getline(cin, input);
-			for (int i = 0; i < 24; i++)
+			string temp = getInput(commands, roomManager);
+			roomManager->processCellar(temp);
+
+			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
 			{
-				if (iequals(input, commands.accessSpecificNode(i)))
-				{
-					roomManager->processCellar(commands.accessSpecificNode(i));
-					break;
-				}
-				else if (i == 23)
-				{
-					cout << "Invalid command. Please try again.\n";
-				}
+				switchManager.exitGame = true;
+			}
+			if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
+			{
+				cout << genericNarration.accessSpecificNode(1);
+				string temp = getInput(commands, roomManager);
 			}
 		}
 	}//some input will trigger the exit condition

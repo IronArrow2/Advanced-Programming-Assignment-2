@@ -46,7 +46,7 @@ void RoomManager::processAtrium(string s)
 	}
 	else if (s != "")
 	{
-		cout << "Hmm. Looks like you can't do that here." << endl;
+		cout << genericNarrationStack->accessSpecificNode(10) << endl;
 		return;
 	}
 
@@ -96,6 +96,42 @@ void RoomManager::processKeep(string s)
 			printNarration(7);
 		}
 	}
+	else if (s == "PULL LEVER")
+	{
+		if (switchManager->keepPaintingsTakenDown == false)
+		{
+			cout << genericNarrationStack->accessSpecificNode(9) << endl;
+			return;
+		}
+		else if (switchManager->northTowerLeverRevealed == true)
+		{
+			cout << genericNarrationStack->accessSpecificNode(0) << endl;
+			return;
+		}
+		else
+		{
+			switchManager->northTowerLeverRevealed = true;
+			cout << genericNarrationStack->accessSpecificNode(2) << endl;
+		}
+	}
+	else if (s == "TAKE KEY")
+	{
+		if (switchManager->keepChestUnlocked == false)
+		{
+			cout << genericNarrationStack->accessSpecificNode(9) << endl;
+			return;
+		}
+		else if (switchManager->keepKeyTaken == true)
+		{
+			cout << genericNarrationStack->accessSpecificNode(0) << endl;
+			return;
+		}
+		else
+		{
+			switchManager->keepKeyTaken = true;
+			cout << genericNarrationStack->accessSpecificNode(3) << endl;
+		}
+	}
 	else if (s == "EXIT" || s == "EXIT GAME")
 	{
 		return;
@@ -106,7 +142,7 @@ void RoomManager::processKeep(string s)
 	}
 	else if (s != "")
 	{
-		cout << "Hmm. Looks like you can't do that here." << endl;
+		cout << genericNarrationStack->accessSpecificNode(10) << endl;
 		return;
 	}
 
@@ -147,30 +183,107 @@ void RoomManager::processKeep(string s)
 
 void RoomManager::processNorthTower(string s)
 {
+	if (s == "PULL LEVER")
+	{
+		if (switchManager->northTowerLeverRevealed == false)
+		{
+			cout << genericNarrationStack->accessSpecificNode(10) << endl;
+			return;
+		}
+		else if (switchManager->atriumDoorOpen == true)
+		{
+			cout << genericNarrationStack->accessSpecificNode(0) << endl;
+			return;
+		}
+		else
+		{
+			switchManager->atriumDoorOpen = true;
+			cout << genericNarrationStack->accessSpecificNode(2) << endl;
+		}
+	}
+	else if (s == "TAKE KEY")
+	{
+		if (switchManager->northTowerKeyTaken == true)
+		{
+			cout << genericNarrationStack->accessSpecificNode(0) << endl;
+			return;
+		}
+		else
+		{
+			switchManager->northTowerKeyTaken = true;
+			cout << genericNarrationStack->accessSpecificNode(3) << endl;
+		}
+	}
+	else if (s == "TAKE WEAPON")
+	{
+		printNarration(4);
+	}
+	else if (s == "EXIT" || s == "EXIT GAME")
+	{
+		return;
+	}
+	else if (s == "LEAVE ROOM" || s == "EXIT ROOM")
+	{
+		return;
+	}
+	else if (s != "")
+	{
+		cout << genericNarrationStack->accessSpecificNode(10) << endl;
+		return;
+	}
+
+	//print starting narration
+	if (switchManager->northTowerKeyTaken == false)
+	{
+		if (switchManager->northTowerLeverRevealed == false)
+		{
+			printNarration(3);
+		}
+		else
+		{
+			printNarration(2);
+		}
+	}
+	else
+	{
+		if (switchManager->northTowerLeverRevealed == false)
+		{
+			printNarration(1);
+		}
+		else
+		{
+			printNarration(0);
+		}
+	}
 }
 
 void RoomManager::processSouthTower(string s)
 {
 	if (s == "INSPECT ROOM")
 	{
-
+		printNarration(4);
+		return;
 	}
 	else if (s == "EXIT" || s == "EXIT GAME")
 	{
-	return;
+		return;
 	}
-	else if (s == "LEAVE ROOM" || s == "EXIT ROOM")
+		else if (s == "LEAVE ROOM" || s == "EXIT ROOM")
 	{
-	return;
+		return;
 	}
 	else if (s != "")
 	{
-	cout << "Hmm. Looks like you can't do that here." << endl;
-	return;
+		cout << genericNarrationStack->accessSpecificNode(10) << endl;
+		return;
 	}
 
 	//print starting narration
-	if (switchManager->southTowerKeyTaken == false && switchManager->magicCrystalTaken == false && switchManager->southTowerCellarPassageOpen == false)
+	if (switchManager->southTowerKeyTaken == false)
+	{
+
+	}
+	else
 	{
 
 	}
@@ -178,4 +291,16 @@ void RoomManager::processSouthTower(string s)
 
 void RoomManager::processCellar(string s)
 {
+	if (s == "INSPECT ROOM")
+	{
+		//printNarration(4);
+	}
+	else if (s == "EXIT" || s == "EXIT GAME")
+	{
+		return;
+	}
+	else if (s == "LEAVE ROOM" || s == "EXIT ROOM")
+	{
+		return;
+	}
 }

@@ -11,11 +11,13 @@ struct SwitchManager
 	bool southTowerCellarPassageOpen = false;
 	bool cellarKeepDoorOpen = false;
 	bool atriumDoorOpen = false;
+	bool northTowerLeverRevealed = false;
 
 	//items that you have
 	bool southTowerKeyTaken = false;
 	bool magicCrystalTaken = false;
 	bool keepKeyTaken = false;
+	bool northTowerKeyTaken = false;
 
 	//boolean that determines when to exit the game loop
 	bool exitGame = false;
