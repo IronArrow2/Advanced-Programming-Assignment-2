@@ -37,9 +37,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="commands.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="narration.txt">
       <Filter>Resource Files</Filter>
     </Text>

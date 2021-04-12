@@ -134,7 +134,8 @@ int main()
 			}
 			if (iequals(input, "LEAVE ROOM") || iequals(input, "EXIT ROOM"))
 			{
-				//cout << genericNarration.accessSpecificNode(1);
+				cout << genericNarration.accessSpecificNode(1);
+				getline(cin, input);
 			}
 		}
 		else if (switchManager.currentLocation == SwitchManager::GameLocations::southTower)
