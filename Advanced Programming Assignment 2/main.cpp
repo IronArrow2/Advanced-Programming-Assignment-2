@@ -118,6 +118,7 @@ int main()
 				cout << genericNarration.accessSpecificNode(9) << endl;
 			}
 		}
+
 		else if (switchManager.currentLocation == SwitchManager::GameLocations::keep)
 		{
 			roomManager->changeNarrationStack(&keepNarration);
@@ -183,6 +184,7 @@ int main()
 				}
 			}
 		}
+
 		else if (switchManager.currentLocation == SwitchManager::GameLocations::southTower)
 		{
 			roomManager->changeNarrationStack(&southTowerNarration);
@@ -235,6 +237,7 @@ int main()
 				}
 			}
 		}
+
 		else if (switchManager.currentLocation == SwitchManager::GameLocations::northTower)
 		{
 			roomManager->changeNarrationStack(&northTowerNarration);
@@ -266,6 +269,7 @@ int main()
 				}
 			}
 		}
+
 		else if (switchManager.currentLocation == SwitchManager::GameLocations::cellar)
 		{
 			roomManager->changeNarrationStack(&cellarNarration);
@@ -282,7 +286,7 @@ int main()
 			{
 				cout << genericNarration.accessSpecificNode(1) << endl;
 				string temp = getInput(commands, roomManager);
-				if (iequals(temp, "KEEP"))
+				if (iequals(temp, "KEEP") && switchManager.cellarKeepDoorOpen == true)
 				{
 					switchManager.currentLocation = SwitchManager::GameLocations::keep;
 					cout << genericNarration.accessSpecificNode(8) << endl;
@@ -292,7 +296,7 @@ int main()
 					switchManager.currentLocation = SwitchManager::GameLocations::southTower;
 					cout << genericNarration.accessSpecificNode(5) << endl;
 				}
-				else if (iequals(temp, "NORTH TOWER") || iequals(temp, "ATRIUM") || iequals(temp, "SOUTH TOWER"))
+				else if (iequals(temp, "NORTH TOWER") || iequals(temp, "ATRIUM") || iequals(temp, "SOUTH TOWER") || iequals(temp, "KEEP"))
 				{
 					cout << genericNarration.accessSpecificNode(12) << endl;
 				}
