@@ -15,7 +15,6 @@ struct SwitchManager
 
 	//items that you have
 	bool southTowerKeyTaken = false;
-	bool magicCrystalTaken = false;
 	bool keepKeyTaken = false;
 	bool northTowerKeyTaken = false;
 

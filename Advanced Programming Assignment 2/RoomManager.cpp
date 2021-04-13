@@ -112,6 +112,7 @@ void RoomManager::processKeep(string s)
 		{
 			switchManager->northTowerLeverRevealed = true;
 			cout << genericNarrationStack->accessSpecificNode(2) << endl;
+			return;
 		}
 	}
 	else if (s == "TAKE KEY")
@@ -132,6 +133,10 @@ void RoomManager::processKeep(string s)
 			cout << genericNarrationStack->accessSpecificNode(3) << endl;
 		}
 	}
+	else if (s == "UNLOCK DOOR")
+	{
+		return;
+	}
 	else if (s == "EXIT" || s == "EXIT GAME")
 	{
 		return;
@@ -147,37 +152,55 @@ void RoomManager::processKeep(string s)
 	}
 
 	//print starting narration
-	if (switchManager->keepChestUnlocked == false && switchManager->keepPaintingsTakenDown == false && switchManager->cellarKeepDoorOpen == false)
+	if (switchManager->keepChestUnlocked == false)
 	{
-		printNarration(9);
+		if (switchManager->keepPaintingsTakenDown == false)
+		{
+			printNarration(9);
+		}
+		else
+		{
+			printNarration(5);
+		}
 	}
-	else if(switchManager->keepChestUnlocked == true && switchManager->keepPaintingsTakenDown == false && switchManager->cellarKeepDoorOpen == false)
+	else
 	{
-		printNarration(2);
-	}
-	else if (switchManager->keepChestUnlocked == true && switchManager->keepPaintingsTakenDown == true && switchManager->cellarKeepDoorOpen == false)
-	{
+		if (switchManager->keepPaintingsTakenDown == false)
+		{
+			if (switchManager->northTowerKeepDoorOpen == false)
+			{
 
-	}
-	else if (switchManager->keepChestUnlocked == true && switchManager->keepPaintingsTakenDown == true && switchManager->cellarKeepDoorOpen == true)
-	{
+			}
+			else
+			{
+				if (switchManager->cellarKeepDoorOpen == false)
+				{
 
-	}
-	else if (switchManager->keepChestUnlocked == true && switchManager->keepPaintingsTakenDown == false && switchManager->cellarKeepDoorOpen == true)
-	{
+				}
+				else
+				{
 
-	}
-	else if (switchManager->keepChestUnlocked == false && switchManager->keepPaintingsTakenDown == true && switchManager->cellarKeepDoorOpen == true)
-	{
+				}
+			}
+		}
+		else
+		{
+			if (switchManager->northTowerKeepDoorOpen == false)
+			{
 
-	}
-	else if (switchManager->keepChestUnlocked == false && switchManager->keepPaintingsTakenDown == true && switchManager->cellarKeepDoorOpen == false)
-	{
-		printNarration(5);
-	}
-	else if (switchManager->keepChestUnlocked == false && switchManager->keepPaintingsTakenDown == false && switchManager->cellarKeepDoorOpen == true)
-	{
+			}
+			else
+			{
+				if (switchManager->cellarKeepDoorOpen == false)
+				{
 
+				}
+				else
+				{
+
+				}
+			}
+		}
 	}
 }
 
@@ -199,6 +222,7 @@ void RoomManager::processNorthTower(string s)
 		{
 			switchManager->atriumDoorOpen = true;
 			cout << genericNarrationStack->accessSpecificNode(2) << endl;
+			return;
 		}
 	}
 	else if (s == "TAKE KEY")
@@ -212,11 +236,13 @@ void RoomManager::processNorthTower(string s)
 		{
 			switchManager->northTowerKeyTaken = true;
 			cout << genericNarrationStack->accessSpecificNode(3) << endl;
+			return;
 		}
 	}
 	else if (s == "TAKE WEAPON")
 	{
 		printNarration(4);
+		return;
 	}
 	else if (s == "EXIT" || s == "EXIT GAME")
 	{
@@ -261,8 +287,45 @@ void RoomManager::processSouthTower(string s)
 {
 	if (s == "INSPECT ROOM")
 	{
-		printNarration(4);
+		printNarration(5);
 		return;
+	}
+	else if(s == "SLOT CRYSTAL")
+	{
+		return;
+	}
+	else if (s == "PULL BOOKS")
+	{
+		if (switchManager->southTowerCellarPassageOpen == true)
+		{
+			cout << genericNarrationStack->accessSpecificNode(0);
+			return;
+		}
+		else
+		{
+			switchManager->southTowerCellarPassageOpen = true;
+			printNarration(0);
+			return;
+		}
+	}
+	else if (s == "TAKE CRYSTAL")
+	{
+		printNarration(1);
+		return;
+	}
+	else if (s == "TAKE KEY")
+	{
+		if (switchManager->southTowerKeyTaken == true)
+		{
+			cout << genericNarrationStack->accessSpecificNode(0) << endl;
+			return;
+		}
+		else
+		{
+			switchManager->southTowerKeyTaken = true;
+			cout << genericNarrationStack->accessSpecificNode(3) << endl;
+			return;
+		}
 	}
 	else if (s == "EXIT" || s == "EXIT GAME")
 	{
@@ -281,11 +344,53 @@ void RoomManager::processSouthTower(string s)
 	//print starting narration
 	if (switchManager->southTowerKeyTaken == false)
 	{
+		if (switchManager->southTowerCellarPassageOpen == false)
+		{
+			if (switchManager->secretPassageOpen == false)
+			{
+				printNarration(6);
+			}
+			else
+			{
 
+			}
+		}
+		else
+		{
+			if (switchManager->secretPassageOpen == false)
+			{
+
+			}
+			else
+			{
+
+			}
+		}
 	}
 	else
 	{
+		if (switchManager->southTowerCellarPassageOpen == false)
+		{
+			if (switchManager->secretPassageOpen == false)
+			{
 
+			}
+			else
+			{
+
+			}
+		}
+		else
+		{
+			if (switchManager->secretPassageOpen == false)
+			{
+
+			}
+			else
+			{
+
+			}
+		}
 	}
 }
 
@@ -302,5 +407,29 @@ void RoomManager::processCellar(string s)
 	else if (s == "LEAVE ROOM" || s == "EXIT ROOM")
 	{
 		return;
+	}
+
+	//print starting narration
+	if (switchManager->secretPassageOpen == false)
+	{
+		if (switchManager->southTowerCellarPassageOpen == false)
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+	else
+	{
+		if (switchManager->southTowerCellarPassageOpen == false)
+		{
+
+		}
+		else
+		{
+
+		}
 	}
 }
