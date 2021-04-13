@@ -281,11 +281,11 @@ void RoomManager::processNorthTower(string s)
 	{
 		if (switchManager->northTowerLeverRevealed == false)
 		{
-			printNarration(1);
+			printNarration(0);
 		}
 		else
 		{
-			printNarration(0);
+			printNarration(1);
 		}
 	}
 }
@@ -438,22 +438,22 @@ void RoomManager::processCellar(string s)
 	{
 		if (switchManager->southTowerCellarPassageOpen == false)
 		{
-
+			printNarration(1);
 		}
 		else
 		{
-
+			printNarration(0);
 		}
 	}
 	else
 	{
 		if (switchManager->southTowerCellarPassageOpen == false)
 		{
-
+			printNarration(2);
 		}
 		else
 		{
-
+			printNarration(3);
 		}
 	}
 }
