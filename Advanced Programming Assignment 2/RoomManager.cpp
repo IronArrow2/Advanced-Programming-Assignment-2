@@ -310,22 +310,22 @@ void RoomManager::processSouthTower(string s)
 		printNarration(5);
 		return;
 	}
-	else if(s == "SLOT CRYSTAL")
+	else if(s == "SLOT CRYSTAL" && switchManager->secretPassageOpen == false)
 	{
-		printNarration(7);
+		printNarration(6);
 		return;
 	}
-	else if(s == "RED SLOT")
+	else if(s == "RED SLOT" && switchManager->secretPassageOpen == false)
 	{
 		printNarration(4);
 		return;
 	}
-	else if (s == "GREEN SLOT")
+	else if (s == "GREEN SLOT" && switchManager->secretPassageOpen == false)
 	{
 		printNarration(3);
 		return;
 	}
-	else if (s == "BLUE SLOT")
+	else if (s == "BLUE SLOT" && switchManager->secretPassageOpen == false)
 	{
 		switchManager->secretPassageOpen = true;
 		printNarration(2);
@@ -385,22 +385,22 @@ void RoomManager::processSouthTower(string s)
 		{
 			if (switchManager->secretPassageOpen == false)
 			{
-				printNarration(6);
+				printNarration(14);
 			}
 			else
 			{
-
+				printNarration(8);
 			}
 		}
 		else
 		{
 			if (switchManager->secretPassageOpen == false)
 			{
-
+				printNarration(9);
 			}
 			else
 			{
-
+				printNarration(7);
 			}
 		}
 	}
@@ -410,22 +410,22 @@ void RoomManager::processSouthTower(string s)
 		{
 			if (switchManager->secretPassageOpen == false)
 			{
-
+				printNarration(13);
 			}
 			else
 			{
-
+				printNarration(11);
 			}
 		}
 		else
 		{
 			if (switchManager->secretPassageOpen == false)
 			{
-
+				printNarration(12);
 			}
 			else
 			{
-
+				printNarration(10);
 			}
 		}
 	}

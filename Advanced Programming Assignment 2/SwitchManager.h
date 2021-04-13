@@ -12,6 +12,7 @@ struct SwitchManager
 	bool cellarKeepDoorOpen = false;
 	bool atriumDoorOpen = false;
 	bool northTowerLeverRevealed = false;
+	bool crystalSlotted = false;
 
 	//items that you have
 	bool southTowerKeyTaken = false;

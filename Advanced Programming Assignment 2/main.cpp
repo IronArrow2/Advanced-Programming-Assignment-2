@@ -195,10 +195,10 @@ int main()
 			{
 				switchManager.exitGame = true;
 			}
-			else if(iequals(temp, "SLOT CRYSTAL"))
+			else if(iequals(temp, "SLOT CRYSTAL") && switchManager.secretPassageOpen == false)
 			{
 				temp = getInput(commands, roomManager);
-				if (temp != "RED SLOT" || temp != "GREEN SLOT" || temp != "BLUE SLOT")
+				if (temp != "RED SLOT" || (temp != "GREEN SLOT" || (temp != "BLUE SLOT")))
 				{
 					cout << genericNarration.accessSpecificNode(10) << endl;
 				}
@@ -206,6 +206,10 @@ int main()
 				{
 					roomManager->processSouthTower(temp);
 				}
+			}
+			else if (iequals(temp, "SLOT CRYSTAL") && switchManager.secretPassageOpen == true)
+			{
+				cout << genericNarration.accessSpecificNode(10) << endl;
 			}
 			else if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
 			{
@@ -218,7 +222,7 @@ int main()
 				}
 				else if (iequals(temp, "CELLAR") && switchManager.southTowerCellarPassageOpen == true)
 				{
-					switchManager.currentLocation = SwitchManager::GameLocations::southTower;
+					switchManager.currentLocation = SwitchManager::GameLocations::cellar;
 					cout << genericNarration.accessSpecificNode(4) << endl;
 				}
 				else if (iequals(temp, "NORTH TOWER") || iequals(temp, "ATRIUM") || iequals(temp, "CELLAR"))
