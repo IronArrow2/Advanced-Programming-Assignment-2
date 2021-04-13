@@ -110,6 +110,11 @@ void RoomManager::processKeep(string s)
 			return;
 		}
 	}
+	else if (s == "GO OUTSIDE")
+	{
+		cout << genericNarrationStack->accessSpecificNode(16) << endl;
+		return;
+	}
 	else if (s == "PULL LEVER")
 	{
 		if (switchManager->keepPaintingsTakenDown == false)
@@ -259,6 +264,16 @@ void RoomManager::processNorthTower(string s)
 			return;
 		}
 	}
+	else if (s == "JUMP OFF")
+	{
+		cout << genericNarrationStack->accessSpecificNode(18) << endl;
+		exit(0);
+	}
+	else if (s == "GO OUTSIDE")
+	{
+		cout << genericNarrationStack->accessSpecificNode(16) << endl;
+		return;
+	}
 	else if (s == "TAKE WEAPON")
 	{
 		printNarration(4);
@@ -310,6 +325,11 @@ void RoomManager::processSouthTower(string s)
 		printNarration(5);
 		return;
 	}
+	else if (s == "JUMP OFF")
+	{
+		cout << genericNarrationStack->accessSpecificNode(18) << endl;
+		exit(0);
+	}
 	else if(s == "SLOT CRYSTAL" && switchManager->secretPassageOpen == false)
 	{
 		printNarration(6);
@@ -344,6 +364,11 @@ void RoomManager::processSouthTower(string s)
 			printNarration(0);
 			return;
 		}
+	}
+	else if (s == "GO OUTSIDE")
+	{
+		cout << genericNarrationStack->accessSpecificNode(16) << endl;
+		return;
 	}
 	else if (s == "TAKE CRYSTAL")
 	{
