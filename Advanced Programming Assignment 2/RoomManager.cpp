@@ -36,6 +36,19 @@ void RoomManager::processAtrium(string s)
 		printNarration(2);
 		return;
 	}
+	else if (s == "GO OUTSIDE")
+	{
+		if (switchManager->atriumDoorOpen == false)
+		{
+			cout << genericNarrationStack->accessSpecificNode(16) << endl;
+			return;
+		}
+		else
+		{
+			cout << genericNarrationStack->accessSpecificNode(17) << endl;
+			exit(0);
+		}
+	}
 	else if (s == "EXIT" || s == "EXIT GAME")
 	{
 		return;
@@ -423,6 +436,7 @@ void RoomManager::processCellar(string s)
 	if (s == "INSPECT ROOM")
 	{
 		//printNarration(4);
+		return;
 	}
 	else if (s == "EXIT" || s == "EXIT GAME")
 	{
@@ -438,7 +452,7 @@ void RoomManager::processCellar(string s)
 	{
 		if (switchManager->southTowerCellarPassageOpen == false)
 		{
-			printNarration(1);
+			printNarration(3);
 		}
 		else
 		{
@@ -453,7 +467,7 @@ void RoomManager::processCellar(string s)
 		}
 		else
 		{
-			printNarration(3);
+			printNarration(1);
 		}
 	}
 }

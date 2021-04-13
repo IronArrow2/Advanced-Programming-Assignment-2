@@ -32,13 +32,13 @@ string getInput(DynTempStack<string> commands, RoomManager* roomManager)
 {
 	string input;
 	getline(cin, input);
-	for (int i = 0; i < 27; i++)
+	for (int i = 0; i < 28; i++)
 	{
 		if (iequals(input, commands.accessSpecificNode(i)))
 		{
 			return (commands.accessSpecificNode(i));
 		}
-		else if (i == 27)
+		else if (i == 28)
 		{
 			cout << "Invalid command. Please try again.\n";
 			return "";
