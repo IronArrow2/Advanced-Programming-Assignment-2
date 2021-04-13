@@ -75,7 +75,7 @@ void RoomManager::processKeep(string s)
 			return;
 		}
 		switchManager->keepPaintingsTakenDown = true;
-		printNarration(6);
+		printNarration(0);
 		return;
 	}
 	else if (s == "OPEN CHEST")
@@ -93,7 +93,8 @@ void RoomManager::processKeep(string s)
 		else
 		{
 			switchManager->keepChestUnlocked = true;
-			printNarration(7);
+			printNarration(1);
+			return;
 		}
 	}
 	else if (s == "PULL LEVER")
@@ -131,9 +132,15 @@ void RoomManager::processKeep(string s)
 		{
 			switchManager->keepKeyTaken = true;
 			cout << genericNarrationStack->accessSpecificNode(3) << endl;
+			return;
 		}
 	}
-	else if (s == "UNLOCK DOOR")
+	else if (s == "INSPECT ROOM")
+	{
+		printNarration(2);
+		return;
+	}
+	else if (s == "UNLOCK DOOR" || s == "OPEN DOOR")
 	{
 		return;
 	}
@@ -156,11 +163,11 @@ void RoomManager::processKeep(string s)
 	{
 		if (switchManager->keepPaintingsTakenDown == false)
 		{
-			printNarration(9);
+			printNarration(10);
 		}
 		else
 		{
-			printNarration(5);
+			printNarration(9);
 		}
 	}
 	else
@@ -169,17 +176,17 @@ void RoomManager::processKeep(string s)
 		{
 			if (switchManager->northTowerKeepDoorOpen == false)
 			{
-
+				printNarration(8);
 			}
 			else
 			{
 				if (switchManager->cellarKeepDoorOpen == false)
 				{
-
+					printNarration(6);
 				}
 				else
 				{
-
+					printNarration(4);
 				}
 			}
 		}
@@ -187,17 +194,17 @@ void RoomManager::processKeep(string s)
 		{
 			if (switchManager->northTowerKeepDoorOpen == false)
 			{
-
+				printNarration(7);
 			}
 			else
 			{
 				if (switchManager->cellarKeepDoorOpen == false)
 				{
-
+					printNarration(5);
 				}
 				else
 				{
-
+					printNarration(3);
 				}
 			}
 		}
@@ -292,6 +299,23 @@ void RoomManager::processSouthTower(string s)
 	}
 	else if(s == "SLOT CRYSTAL")
 	{
+		printNarration(7);
+		return;
+	}
+	else if(s == "RED SLOT")
+	{
+		printNarration(4);
+		return;
+	}
+	else if (s == "GREEN SLOT")
+	{
+		printNarration(3);
+		return;
+	}
+	else if (s == "BLUE SLOT")
+	{
+		switchManager->secretPassageOpen = true;
+		printNarration(2);
 		return;
 	}
 	else if (s == "PULL BOOKS")
