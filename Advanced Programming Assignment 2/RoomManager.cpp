@@ -438,6 +438,19 @@ void RoomManager::processCellar(string s)
 		//printNarration(4);
 		return;
 	}
+	else if (s == "GO OUTSIDE")
+	{
+		if (switchManager->secretPassageOpen == false)
+		{
+			cout << genericNarrationStack->accessSpecificNode(16) << endl;
+			return;
+		}
+		else
+		{
+			cout << genericNarrationStack->accessSpecificNode(17) << endl;
+			exit(0);
+		}
+	}
 	else if (s == "EXIT" || s == "EXIT GAME")
 	{
 		return;

@@ -198,7 +198,7 @@ int main()
 			else if(iequals(temp, "SLOT CRYSTAL") && switchManager.secretPassageOpen == false)
 			{
 				temp = getInput(commands, roomManager);
-				if (temp != "RED SLOT" || (temp != "GREEN SLOT" || (temp != "BLUE SLOT")))
+				if (temp != "RED SLOT" && temp != "GREEN SLOT" && temp != "BLUE SLOT")
 				{
 					cout << genericNarration.accessSpecificNode(10) << endl;
 				}
