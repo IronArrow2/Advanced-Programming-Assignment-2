@@ -66,7 +66,7 @@ int main()
 		cout << "File one could not be opened.";
 		return 1;
 	}
-	//populate the commands stack
+	//populate the stacks with narration and commands
 	string temp;
 	getline(file, temp);
 	splitToStack(temp, pipeDelimiter, commands);
