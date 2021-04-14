@@ -38,10 +38,10 @@ string getInput(DynTempStack<string> commands)
 		{
 			return (commands.accessSpecificNode(i));
 		}
-		else if (i == 28)
+		else if (i == 27)
 		{
 			cout << "Invalid command. Please try again.\n";
-			return "";
+			return getInput(commands);
 		}
 	}
 	return "";
