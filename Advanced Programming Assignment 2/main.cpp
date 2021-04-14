@@ -28,7 +28,7 @@ bool iequals(const string& a, const string& b)
 		});
 }
 
-string getInput(DynTempStack<string> commands, RoomManager* roomManager)
+string getInput(DynTempStack<string> commands)
 {
 	string input;
 	getline(cin, input);
@@ -56,7 +56,6 @@ int main()
 	//a stack that containa every valid command the player can enter, used to determine if a command is valid
 	//also some stacks containing narration for each room. maps would work better for this purpose, I think
 	DynTempStack<string> commands, atriumNarration, keepNarration, northTowerNarration, southTowerNarration, cellarNarration, genericNarration;
-	string input;
 
 	char pipeDelimiter = '|';
 
@@ -100,7 +99,7 @@ int main()
 			roomManager->changeNarrationStack(&atriumNarration);
 			roomManager->processAtrium("");
 
-			string temp = getInput(commands, roomManager);
+			string temp = getInput(commands);
 			roomManager->processAtrium(temp);
 
 			//process input and do stuff depending on what the player entered
@@ -124,7 +123,7 @@ int main()
 			roomManager->changeNarrationStack(&keepNarration);
 			roomManager->processKeep("");
 
-			string temp = getInput(commands, roomManager);
+			string temp = getInput(commands);
 			roomManager->processKeep(temp);
 
 			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
@@ -134,7 +133,7 @@ int main()
 			else if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
 			{
 				cout << genericNarration.accessSpecificNode(1) << endl;
-				string temp = getInput(commands, roomManager);
+				string temp = getInput(commands);
 				if (iequals(temp, "SOUTH TOWER"))
 				{
 					switchManager.currentLocation = SwitchManager::GameLocations::southTower;
@@ -167,7 +166,7 @@ int main()
 			else if (iequals(temp, "OPEN DOOR") || iequals(temp, "UNLOCK DOOR"))
 			{
 				cout << genericNarration.accessSpecificNode(13) << endl;
-				temp = getInput(commands, roomManager);
+				temp = getInput(commands);
 				if (iequals(temp, "NORTH TOWER"))
 				{
 					switchManager.northTowerKeepDoorOpen = true;
@@ -190,7 +189,7 @@ int main()
 			roomManager->changeNarrationStack(&southTowerNarration);
 			roomManager->processSouthTower("");
 
-			string temp = getInput(commands, roomManager);
+			string temp = getInput(commands);
 			roomManager->processSouthTower(temp);
 
 			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
@@ -199,7 +198,7 @@ int main()
 			}
 			else if(iequals(temp, "SLOT CRYSTAL") && switchManager.secretPassageOpen == false)
 			{
-				temp = getInput(commands, roomManager);
+				temp = getInput(commands);
 				if (temp != "RED SLOT" && temp != "GREEN SLOT" && temp != "BLUE SLOT")
 				{
 					cout << genericNarration.accessSpecificNode(10) << endl;
@@ -216,7 +215,7 @@ int main()
 			else if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
 			{
 				cout << genericNarration.accessSpecificNode(1) << endl;
-				string temp = getInput(commands, roomManager);
+				string temp = getInput(commands);
 				if (iequals(temp, "KEEP"))
 				{
 					switchManager.currentLocation = SwitchManager::GameLocations::keep;
@@ -243,7 +242,7 @@ int main()
 			roomManager->changeNarrationStack(&northTowerNarration);
 			roomManager->processNorthTower("");
 
-			string temp = getInput(commands, roomManager);
+			string temp = getInput(commands);
 			roomManager->processNorthTower(temp);
 
 			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
@@ -253,7 +252,7 @@ int main()
 			if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
 			{
 				cout << genericNarration.accessSpecificNode(1) << endl;
-				string temp = getInput(commands, roomManager);
+				string temp = getInput(commands);
 				if (iequals(temp, "KEEP"))
 				{
 					switchManager.currentLocation = SwitchManager::GameLocations::keep;
@@ -275,7 +274,7 @@ int main()
 			roomManager->changeNarrationStack(&cellarNarration);
 			roomManager->processCellar("");
 
-			string temp = getInput(commands, roomManager);
+			string temp = getInput(commands);
 			roomManager->processCellar(temp);
 
 			if (iequals(temp, "EXIT GAME") || iequals(temp, "EXIT"))
@@ -285,7 +284,7 @@ int main()
 			if (iequals(temp, "LEAVE ROOM") || iequals(temp, "EXIT ROOM"))
 			{
 				cout << genericNarration.accessSpecificNode(1) << endl;
-				string temp = getInput(commands, roomManager);
+				string temp = getInput(commands);
 				if (iequals(temp, "KEEP") && switchManager.cellarKeepDoorOpen == true)
 				{
 					switchManager.currentLocation = SwitchManager::GameLocations::keep;
